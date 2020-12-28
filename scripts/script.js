@@ -1,19 +1,16 @@
-let navbarContent = document.querySelector('link[id="navbarImport"]').import;
-let navbarHTML = navbarContent.getElementById("menuAndNavbar");
-let footerContent = document.querySelector('link[id="footerImport"]').import;
-let footerHTML = footerContent.getElementById("footer");
+let navbarHTML = document.getElementById("menuAndNavbar");
+let footerHTML = document.getElementById("footer");
 //Siden strukturen på forsiden og de andre sidene er litt annerledes, må navbaren og footeren legges inn på forskjellige steder. Hvis title == "forside" legges navbar øverst i dokumentet og footer nederst i dokumentet. Position på footer må også være relativ på forsiden og bredden må være inherit for at det skal funke korrekt. Navbaren skal også bare kunne endre størrelse på forsiden.
 if (document.title == "Forside") {
   window.addEventListener('scroll', resizeNavbar);
-  document.body.insertBefore(navbarHTML.cloneNode(true), document.body.firstChild);
-  document.body.appendChild(footerHTML.cloneNode(true));
+ // document.body.insertBefore(navbarHTML.cloneNode(true), document.body.firstChild);
+ // document.body.appendChild(footerHTML.cloneNode(true));
   document.getElementById("footer").style.position = "relative";
   document.getElementById("footer").style.width = "inherit";
 }
 else { //på de andre nettsidene bli navbar lagt til toppen av holder-diven og footer til bunnen. Navbaren skal også være den lille versjonen
-  document.getElementById("holder").appendChild(footerHTML.cloneNode(true));
-  document.getElementById("holder").insertBefore(navbarHTML.cloneNode(true), document.getElementById("holder").firstChild);
   document.getElementById("navbar").classList.add("small");
+  window.addEventListener('scroll', resizeNavbar);
 }
 const navbarElement = document.getElementById("navbar")
 const menuElement = document.getElementById("menu")
